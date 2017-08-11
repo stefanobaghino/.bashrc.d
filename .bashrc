@@ -14,6 +14,8 @@ export PRJ_DIR=~/Projects/
 
 # Source the contents of .bashrc.d
 for INIT_SCRIPT in ~/.bashrc.d/init_*; do
-	source "$INIT_SCRIPT"
+	if [ -f "$INIT_SCRIPT" ]; then
+		source "$INIT_SCRIPT"
+	fi
 done
 

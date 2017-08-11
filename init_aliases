@@ -1,0 +1,6 @@
+#!/usr/bin/env /bin/sh
+
+# Remap Ctrl+C and Ctrl+V
+stty intr ^C
+stty lnext ^V
+

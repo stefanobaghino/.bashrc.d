@@ -1,0 +1,72 @@
+#!/usr/bin/env /bin/bash
+
+# Custom prompt definition
+source /usr/share/git-core/contrib/completion/git-prompt.sh
+
+export CL_RST="\033[m"
+
+export CL_WHT="\033[29;1m"
+export CL_GRY="\033[30;1m"
+export CL_RED="\033[31;1m"
+export CL_GRN="\033[32;1m"
+export CL_YLL="\033[33;1m"
+export CL_BLU="\033[34;1m"
+export CL_VLT="\033[35;1m"
+export CL_CYN="\033[36;1m"
+
+export CL_DWHT="\033[29;2m"
+export CL_DGRY="\033[30;2m"
+export CL_DRED="\033[31;2m"
+export CL_DGRN="\033[32;2m"
+export CL_DYLL="\033[33;2m"
+export CL_DBLU="\033[34;2m"
+export CL_DVLT="\033[35;2m"
+export CL_DCYN="\033[36;2m"
+
+# GIT_PS1 configuration
+export GIT_PS1_SHOWUPSTREAM="verbose"
+export GIT_PS1_SHOWUPSTREAM="auto"
+export GIT_PS1_SHOWCOLORHINTS="enable"
+export GIT_PS1_SHOWUNTRACKEDFILES="enable"
+export GIT_PS1_SHOWDIRTYSTATE="enable"
+export GIT_PS1_SHOWSTASHSTATE="enable"
+
+gitpwd()
+{
+	STATUS=$?
+	git rev-parse > /dev/null 2>&1
+	if [[ $? == 0 ]]; then
+		GIT_ROOT=$(git rev-parse --show-toplevel)
+		echo $(basename "$GIT_ROOT")${PWD#$GIT_ROOT}
+	elif [[ "$PWD" =~ ^"$HOME"(/|$) ]]; then
+		echo ~${PWD#$HOME}
+	else
+		echo $PWD
+	fi
+	exit $STATUS
+}
+
+gitmail()
+{
+	STATUS=$?
+	git rev-parse > /dev/null 2>&1
+	if [[ $? == 0 ]]; then
+		git config user.email > /dev/null 2>&1 || echo " @"
+	fi
+	exit $STATUS
+}
+
+statuscolor()
+{
+	STATUS=$?
+	if [[ ${STATUS} == 0 ]]; then
+		echo -e "${CL_GRN}"
+	else
+		echo -e "${CL_RED}"
+	fi
+	exit $STATUS
+}
+
+# Prompt definition.
+export PS1="\\[${CL_GRN}\\]\$(gitpwd)\\[${CL_BLU}\\]\$(__git_ps1 \" %s\")\\[${CL_RED}\\]\$(gitmail)\\[\$(statuscolor)\\] > \\[${CL_RST}\\]"
+

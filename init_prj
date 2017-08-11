@@ -1,0 +1,40 @@
+#!/usr/bin/env /bin/bash
+
+cdprj()
+{
+	if [[ "$#" -ne 1 ]]; then
+		echo "cdprj: illegal number of arguments"
+	else
+		cd "$PRJ_DIR"/$1
+	fi
+}
+
+rmprj()
+{
+	if [[ "$#" -lt 1 ]]; then
+		echo "rmprj: illegal number of arguments"
+		exit 1
+	else
+		echo "Removing project $1..."
+		rm -rf "$PRJ_DIR"/$1
+	fi
+}
+
+treeprj()
+{
+	( cd $PRJ_DIR; tree -L 1 * )
+}
+
+_prj()
+{
+	local cur opts
+	COMPREPLY=()
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	PRJ_DIR_LEN=${#PRJ_DIR}
+	opts=$(find $PRJ_DIR -mindepth 2 -maxdepth 2 -type d | colrm 1 $PRJ_DIR_LEN | tr '\n' ' ')
+	COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+}
+
+complete -F _prj cdprj
+complete -F _prj rmprj
+

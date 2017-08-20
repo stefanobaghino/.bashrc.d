@@ -1,3 +1,7 @@
 # .bashrc.d
 
-Some scripts to source from your own `.bashrc`. An example is included.
+My personal collection of scripts to bootstrap my own environment.
+
+To source everything, simply add the following to your `.bashrc`:
+
+    . ~/.bashrc.d/all

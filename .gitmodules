@@ -1,0 +1,3 @@
+[submodule "ansible-completion"]
+	path = .modules/ansible-completion
+	url = git@github.com:dysosmus/ansible-completion.git

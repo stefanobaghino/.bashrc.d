@@ -1,7 +1,7 @@
 #!/usr/bin/env /bin/bash
 
 # Custom prompt definition
-source /usr/share/git-core/contrib/completion/git-prompt.sh
+source /etc/bash_completion.d/git-prompt
 
 export CL_RST="\033[m"
 

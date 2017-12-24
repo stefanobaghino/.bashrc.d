@@ -31,7 +31,7 @@ _prj()
 	COMPREPLY=()
 	cur="${COMP_WORDS[COMP_CWORD]}"
 	PRJ_DIR_LEN=${#PRJ_DIR}
-	opts=$(find $PRJ_DIR -mindepth 2 -maxdepth 2 -type d | colrm 1 $PRJ_DIR_LEN | tr '\n' ' ')
+	opts=$(find $PRJ_DIR -mindepth 2 -maxdepth 2 -type d | colrm 1 $(($PRJ_DIR_LEN + 1)) | tr '\n' ' ')
 	COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
 }
 

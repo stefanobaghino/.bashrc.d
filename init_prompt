@@ -68,5 +68,5 @@ statuscolor()
 }
 
 # Prompt definition.
-export PS1="\\[${CL_GRN}\\]\$(gitpwd)\\[${CL_BLU}\\]\$(__git_ps1 \" %s\")\\[${CL_RED}\\]\$(gitmail)\\[\$(statuscolor)\\] > \\[${CL_RST}\\]"
+export PS1="\\[${CL_GRN}\\]\h:\$(gitpwd)\\[${CL_BLU}\\]\$(__git_ps1 \" %s\")\\[${CL_RED}\\]\$(gitmail)\\[\$(statuscolor)\\] > \\[${CL_RST}\\]"
 

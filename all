@@ -7,12 +7,8 @@ source_if_file() {
 }
 
 INIT=~/.bashrc.d/init_*
-ANSIBLE_COMPLETION=~/.bashrc.d/.modules/ansible-completion/*.bash
 
 for RC in $INIT; do
 	source_if_file "$RC"
 done
 
-for RC in $ANSIBLE_COMPLETION; do
-	source_if_file "$RC"
-done
